@@ -60,11 +60,7 @@ Well, your algorithm has never seen it before, so it sets the probability that <
 To avoid such issues with unseen values for features, as well as to combat overfitting to the data set, we pretend as if we’ve seen each word 1 (or k, if you’re smoothing by k) time more than we’ve actually seen it, and adjust the denominator of our frequency divisions by the size of the overall vocabulary to account for the “pretence”, which actually works well in practice.
 
 If you take smoothing factor k equal to 1 , it becomes Laplace correction.
-The equations below show Laplace correction for the example taken.
-<br>Without correction : 
-<img src="L_corr.png">
-With correction :
-<img src="L_corr1.png" width="400px">
+
 
 
 
