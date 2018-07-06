@@ -49,6 +49,23 @@ After taking up the naive assumption, we can easily calculate the individual pro
 
 ![image](https://user-images.githubusercontent.com/40559132/42381200-00686b2c-814e-11e8-99cb-f8d176d82ff0.png)
 
+### ESTIMATE PROBABILITIES USING TRAINING DATA (TAKING DISCRETE VALUE FEATURES)
+Using the above formula, we can calculate the probability that the output y belongs to jth class, for the given ith data point. Class probabilites [ P(y = cj) ] will be calculated from the data given and and individual probabilties [ P(x=xi<sup>k</sup>|y = cj) ] will be calculated by diving the data class wise can calculating these for the jth class.  
+
+## Handling zeroes using Laplace correction
+Let’s consider the following situation: you’ve trained a Naive Bayes algorithm to differentiate between spam and not spam mails. What happens if the word “Casino” doesn’t show up in your training data set, but appears in a test sample?
+
+Well, your algorithm has never seen it before, so it sets the probability that <b>"Casino" appears in a spam document</b> to <b>0</b>; So every time this word appears in the test data , you will try hard (it has P = 0) to mark it as not spam just because you have not seen that word in the spam part of training data.This will make the model very less efficient and thus we want to minimise it. We want to keep in mind the possibility of any word we have not seen (or for that matter seen in the not-spam part of training data), may have a probability of being a word used in spam mails greater than 0. Ths same is true for each word to be a part of not-spam mails. 
+
+To avoid such issues with unseen values for features, as well as to combat overfitting to the data set, we pretend as if we’ve seen each word 1 (or k, if you’re smoothing by k) time more than we’ve actually seen it, and adjust the denominator of our frequency divisions by the size of the overall vocabulary to account for the “pretence”, which actually works well in practice.
+
+If you take smoothing factor k equal to 1 , it becomes Laplace correction.
+The equations below show Laplace correction for the example taken.
+<br>Without correction : 
+<img src="L_corr.png">
+With correction :
+<img src="L_corr1.png" width="400px">
+
 
 
 
